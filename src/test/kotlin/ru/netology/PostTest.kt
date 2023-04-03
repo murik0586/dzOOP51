@@ -10,19 +10,19 @@ class PostTest {
 
     @Test
     fun add1() {
-        val result = WallService.add(Post(0, "vfkds", "vdds", 12, 10, CommentsPost(), 12, true, true, true))
+        val result = WallService.add(Post(0, 23, 24, 26, "Murat Musaev", "Первый пост", 23,CommentsPost(), 23, false, true, false, 34, "post", 23, true, true,false, true, 23, donut(), geo(), copyrRight(), likes(),Views23(), Reposts()))
         assertEquals(1, result.id)
     }
 
     @Test
     fun update3() {
-        val service1 = WallService
-        service1.add(Post(0, "vf212kds", "vd34fds", 123, 110, CommentsPost(), 12, true, true, true))
-        service1.add(Post(1, "vf212kds", "vd34fds", 123, 110, CommentsPost(), 12, true, true, true))
-        service1.add(Post(3, "vfkds", "vdds", 12, 10, CommentsPost(), 12, false, true, true))
-        var update = Post(3, "vfkds22222", "vdds", 12, 10, CommentsPost(), 1222, true, true, false)
+        val service2 = WallService
+        service2.add(Post(0,2,5, 5, "sdada", "Vehsas", 23, CommentsPost(), 23, true, false, true, 55, "rfr ltkf" , 54, false, true, false, null,444, donut(), geo(), copyrRight(), likes(),Views23(), Reposts() ))
+        service2.add(Post(1,2,5, 5, "sdada", "Vehsas", 23, CommentsPost(), 23, true, false, true, 55, "rfr ltkf" , 54, false, true, false, null,444, donut(), geo(), copyrRight(), likes(),Views23(), Reposts() ))
+        service2.add(Post(3,2,5, 5, "sdada", "Vehsas", 23, CommentsPost(), 23, true, false, true, 55, "rfr ltkf" , 54, false, true, false, null,444, donut(), geo(), copyrRight(), likes(),Views23(), Reposts() ))
+        var update = Post(3,2,5, 5, "sdada", "Vehsas", 23, CommentsPost(), 23, true, false, true, 55, "rfr ltkf" , 54, false, true, false, null,444, donut(), geo(), copyrRight(), likes(),Views23(), Reposts() )
 
-        val result = service1.update(update)
+        val result = service2.update(update)
 
         assertTrue(result)
     }
@@ -30,13 +30,12 @@ class PostTest {
 
     @Test
     fun update2() {
-        val service1 = WallService
-        service1.add(Post(0, "vf212kds", "vd34fds", 123, 110, CommentsPost(), 12, true, true, true))
-        service1.add(Post(1, "vf212kds", "vd34fds", 123, 110, CommentsPost(), 12, true, true, true))
-        service1.add(Post(3, "vfkds", "vdds", 12, 10, CommentsPost(), 12, false, true, true))
-        var update = Post(4, "vfkds22222", "vdds", 12, 10, CommentsPost(), 1222, true, true, false)
-
-        val result = service1.update(update)
+        val service2 = WallService
+        service2.add(Post(0,2,5, 5, "sdada", "Vehsas", 23, CommentsPost(), 23, true, false, true, 55, "rfr ltkf" , 54, false, true, false, null,444, donut(), geo(), copyrRight(), likes(),Views23(), Reposts() ))
+        service2.add(Post(1,2,5, 5, "sdada", "Vehsas", 23, CommentsPost(), 23, true, false, true, 55, "rfr ltkf" , 54, false, true, false, null,444, donut(), geo(), copyrRight(), likes(),Views23(), Reposts() ))
+        service2.add(Post(3,2,5, 5, "sdada", "Vehsas", 23, CommentsPost(), 23, true, false, true, 55, "rfr ltkf" , 54, false, true, false, null,444, donut(), geo(), copyrRight(), likes(),Views23(), Reposts() ))
+        var update = Post(4,2,5, 5, "sdada", "Vehsas", 23, CommentsPost(), 23, true, false, true, 55, "rfr ltkf" , 54, false, true, false, null,444, donut(), geo(), copyrRight(), likes(),Views23(), Reposts() )
+        val result = service2.update(update)
 
         assertFalse(result)
     }
