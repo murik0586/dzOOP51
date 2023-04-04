@@ -1,71 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>main.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">OOPDZ51</a> &gt; <a href="index.source.html" class="el_package">ru.netology</a> &gt; <span class="el_source">main.kt</span></div><h1>main.kt</h1><pre class="source lang-java linenums">package ru.netology
 
 <span class="fc" id="L3">data class Post(</span>
-<span class="fc" id="L4">    val id: Int, // 1.РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р·Р°РїРёСЃРё</span>
-<span class="pc" id="L5">    val fromId: String, //2. РђРІС‚РѕСЂ Р·Р°РїРёСЃРё //РёСЃРїРѕР»СЊР·СѓР№С‚Рµ camelCase</span>
-<span class="pc" id="L6">    val text: String, // 3. С‚РµРєСЃС‚ Р·Р°РїРёСЃРё</span>
-<span class="pc" id="L7">    val date: Long, // 4.  Р”Р°С‚Р° РїРѕСЃС‚Р°</span>
-<span class="pc" id="L8">    val Views: Int,  /* 5. Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ РїСЂРѕСЃРјРѕС‚СЂР°С… Р·Р°РїРёСЃРё. РћР±СЉРµРєС‚ СЃ РµРґРёРЅСЃС‚РІРµРЅРЅС‹Рј РїРѕР»РµРј*/</span>
-<span class="pc" id="L9">    val commentsPost1: CommentsPost, // 6.РєРѕРјРјРµРЅС‚Р°СЂРёРё</span>
-<span class="pc" id="L10">    val Likes: Int,// 7.Р»Р°Р№РєРё</span>
-<span class="pc" id="L11">    val isFavorite: Boolean, // 8. РґРѕР±Р°РІР»РµРЅ Р»Рё РІ Р·Р°РєР»Р°РґРєРё Сѓ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</span>
-<span class="pc" id="L12">    val canEdit: Boolean, // 9.РјРѕР¶РµС‚ Р»Рё СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ</span>
-<span class="pc" id="L13">    val friendsOnly: Boolean// 10. Р�РЅС„РѕСЂРјР°С†РёСЏ Р±С‹Р»Р° Р»Рё СЃРѕР·РґР°РЅР° Р·Р°РїРёСЃСЊ С‚РѕР»СЊРєРѕ РґР»СЏ РґСЂСѓР·РµР№.</span>
+    // val attachments: Array&lt;Type&gt; = emptyArray(),
+<span class="fc" id="L5">    val id: Int, // 1.РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р·Р°РїРёСЃРё</span>
+<span class="pc" id="L6">    val ownerId: Int, //Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІР»Р°РґРµР»СЊС†Р° СЃС‚РµРЅС‹, РЅР° РєРѕС‚РѕСЂРѕР№ СЂР°Р·РјРµС‰РµРЅР° Р·Р°РїРёСЃСЊ.</span>
+<span class="pc" id="L7">    val createdBy: Int, //Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°, РєРѕС‚РѕСЂС‹Р№ РѕРїСѓР±Р»РёРєРѕРІР°Р» Р·Р°РїРёСЃСЊ</span>
+<span class="pc" id="L8">    val replyOwnerId: Int,// Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІР»Р°РґРµР»СЊС†Р° Р·Р°РїРёСЃРё, РІ РѕС‚РІРµС‚ РЅР° РєРѕС‚РѕСЂСѓСЋ Р±С‹Р»Р° РѕСЃС‚Р°РІР»РµРЅР° С‚РµРєСѓС‰Р°СЏ.</span>
+<span class="pc" id="L9">    val fromId: String, //2. РђРІС‚РѕСЂ Р·Р°РїРёСЃРё</span>
+<span class="pc" id="L10">    val text: String, // 3. С‚РµРєСЃС‚ Р·Р°РїРёСЃРё</span>
+<span class="pc" id="L11">    val date: Long, // 4.  Р”Р°С‚Р° РїРѕСЃС‚Р°</span>
+<span class="pc" id="L12">    val commentsPost1: CommentsPost, // 6.РєРѕРјРјРµРЅС‚Р°СЂРёРё</span>
+<span class="pc" id="L13">    val Likes: Int,// 7.Р»Р°Р№РєРё</span>
+<span class="pc" id="L14">    val isFavorite: Boolean, // 8. РґРѕР±Р°РІР»РµРЅ Р»Рё РІ Р·Р°РєР»Р°РґРєРё Сѓ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</span>
+<span class="pc" id="L15">    val canEdit: Boolean, // 9.РјРѕР¶РµС‚ Р»Рё СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ</span>
+<span class="pc" id="L16">    val friendsOnly: Boolean,// 10. Р�РЅС„РѕСЂРјР°С†РёСЏ Р±С‹Р»Р° Р»Рё СЃРѕР·РґР°РЅР° Р·Р°РїРёСЃСЊ С‚РѕР»СЊРєРѕ РґР»СЏ РґСЂСѓР·РµР№</span>
+<span class="pc" id="L17">    val replyPostId: Int, //Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р·Р°РїРёСЃРё, РІ РѕС‚РІРµС‚ РЅР° РєРѕС‚РѕСЂСѓСЋ Р±С‹Р»Р° РѕСЃС‚Р°РІР»РµРЅР° С‚РµРєСѓС‰Р°СЏ.</span>
+<span class="pc" id="L18">    val postType: String, //	РўРёРї Р·Р°РїРёСЃРё, РјРѕР¶РµС‚ РїСЂРёРЅРёРјР°С‚СЊ СЃР»РµРґСѓСЋС‰РёРµ Р·РЅР°С‡РµРЅРёСЏ: post, copy, reply, postpone, suggest.</span>
+<span class="pc" id="L19">    val signerId: Int, // Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р°РІС‚РѕСЂР°, РµСЃР»Рё Р·Р°РїРёСЃСЊ Р±С‹Р»Р° РѕРїСѓР±Р»РёРєРѕРІР°РЅР° РѕС‚ РёРјРµРЅРё СЃРѕРѕР±С‰РµСЃС‚РІР° Рё РїРѕРґРїРёСЃР°РЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј;</span>
+<span class="pc" id="L20">    val canPin: Boolean, //Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°РєСЂРµРїРёС‚СЊ Р·Р°РїРёСЃСЊ.</span>
+<span class="pc" id="L21">    val canDelete: Boolean = true,// Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СѓРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ</span>
+<span class="pc" id="L22">    val isPinned: Boolean,// Р·Р°РєСЂРµРїР»РµРЅР° Р»Рё Р·Р°РїРёСЃСЊ</span>
+<span class="pc" id="L23">    val markedAsAds: Boolean? = null, //Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, СЃРѕРґРµСЂР¶РёС‚ Р»Рё Р·Р°РїРёСЃСЊ РѕС‚РјРµС‚РєСѓ &quot;СЂРµРєР»Р°РјР°&quot; `</span>
+<span class="pc" id="L24">    val postponedId: Int,//Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РѕС‚Р»РѕР¶РµРЅРЅРѕР№ Р·Р°РїРёСЃРё. Р­С‚Рѕ РїРѕР»Рµ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ С‚РѕРіРґР°, РєРѕРіРґР° Р·Р°РїРёСЃСЊ СЃС‚РѕСЏР»Р° РЅР° С‚Р°Р№РјРµСЂРµ.</span>
+<span class="pc" id="L25">    val donut1: Donut,</span>
+<span class="pc" id="L26">    val geo: Geo,</span>
+<span class="pc" id="L27">    val copyrRight: copyrRight,</span>
+<span class="pc" id="L28">    val likes: likes,</span>
+<span class="pc" id="L29">    val views23: Views23,</span>
+<span class="pc" id="L30">    val Reposts: Reposts,</span>
+<span class="pc" id="L31">    val attachment: Array&lt;Attachment&gt; = arrayOf(),</span>
 
-)
 
 
-<span class="fc" id="L18">data class CommentsPost(</span>
-<span class="pc" id="L19">    val count: Int = 0, // 5.РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјРј 7.РјРѕР¶РµС‚ Р»Рё РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ</span>
-<span class="pc" id="L20">    val can_close: Boolean = true, //8.РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°РєСЂС‹С‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёРё Рє Р·Р°РїРёСЃРё*</span>
-<span class="pc" id="L21">    val can_post: Boolean = true,  // 7.РјРѕР¶РµС‚ Р»Рё РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ</span>
-<span class="pc" id="L22">    val can_open: Boolean = true, //9.РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РѕС‚РєСЂС‹С‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёРё Рє Р·Р°РїРёСЃРё.</span>
+<span class="fc" id="L35">    )</span>
 
-<span class="fc" id="L24">)</span>
+<span class="fc" id="L37">data class Donut( //Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ Р·Р°РїРёСЃРё Donut:</span>
+<span class="pc" id="L38">    val isDonu: Boolean = false, // Р·Р°РїРёСЃСЊ РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РїР»Р°С‚РЅС‹Рј РїРѕРґРїРёСЃС‡РёРєР°Рј Donut;</span>
+<span class="pc" id="L39">    val paidDuration: Double? = null, // РІ С‚РµС‡РµРЅРёРё РєРѕС‚РѕСЂРѕРіРѕ РІСЂРµРјРµРЅРё РґРѕСЃС‚СѓРїРЅР° Р·Р°РїРёСЃСЊ Р·Р° РґРѕРЅР°С‚</span>
+<span class="pc" id="L40">    val canPublishFreeCopy: Boolean = true,// РјРѕР¶РЅРѕ Р»Рё РѕС‚РєСЂС‹С‚СЊ Р·Р°РїРёСЃСЊ РґР»СЏ РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, Р° РЅРµ С‚РѕР»СЊРєРѕ РїРѕРґРїРёСЃС‡РёРєРѕРІ  Donut;</span>
+<span class="pc" id="L41">    val editMode: String? = null,// вЂ” РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РєР°РєРёРµ Р·РЅР°С‡РµРЅРёСЏ VK Donut РјРѕР¶РЅРѕ РёР·РјРµРЅРёС‚СЊ РІ Р·Р°РїРёСЃРё. Р’РѕР·РјРѕР¶РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ</span>
+// duration вЂ” РІСЂРµРјСЏ, РІ С‚РµС‡РµРЅРёРµ РєРѕС‚РѕСЂРѕРіРѕ Р·Р°РїРёСЃСЊ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РїР»Р°С‚РЅС‹Рј РїРѕРґРїРёСЃС‡РёРєР°Рј VK Donut.
+<span class="fc" id="L43">)</span>
 
-object  WallService {
-<span class="fc" id="L27">    private var posts = emptyArray&lt;Post&gt;()</span>
-<span class="fc" id="L28">    private var postId = 1</span>
 
-    fun add (post: Post): Post {
-<span class="fc" id="L31">        posts += post.copy(id = postId++)</span>
-<span class="fc" id="L32">        return posts.last()</span>
+
+<span class="fc" id="L47">data class Geo (</span>
+    //Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРё , СЃРѕРґРµСЂР¶РёС‚ РїРѕР»СЏ:
+<span class="pc" id="L49">    val type: String? = null, // С‚РёРї РјРµСЃС‚Р°;</span>
+<span class="pc" id="L50">    val coordinates: String? = null, // РєРѕРѕСЂРґРёРЅР°С‚С‹ РјРµСЃС‚Р°;</span>
+
+<span class="fc" id="L52">)</span>
+<span class="fc" id="L53">data class copyrRight ( //Р�СЃС‚РѕС‡РЅРёРє РјР°С‚РµСЂРёР°Р»Р°, РѕР±СЉРµРєС‚ СЃ РїРѕР»СЏРјРё</span>
+<span class="pc" id="L54">    val id: Int? = null,</span>
+<span class="pc" id="L55">    val link: String? = null,</span>
+<span class="pc" id="L56">    val name: String? = null,</span>
+<span class="pc" id="L57">    val type: String? = null,</span>
+<span class="fc" id="L58">)</span>
+
+<span class="fc" id="L60">data class likes(</span>
+//Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ Р»Р°Р№РєР°С… Рє Р·Р°РїРёСЃРё, РѕР±СЉРµРєС‚ СЃ РїРѕР»СЏРјРё:
+<span class="pc" id="L62">    val count: Int? = null,// С‡РёСЃР»Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, РєРѕС‚РѕСЂС‹Рј РїРѕРЅСЂР°РІРёР»Р°СЃСЊ Р·Р°РїРёСЃСЊ;</span>
+<span class="pc" id="L63">    val userLikes: Boolean = true, // РЅР°Р»РёС‡РёРµ РѕС‚РјРµС‚РєРё В«РњРЅРµ РЅСЂР°РІРёС‚СЃСЏВ» РѕС‚ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (1 вЂ” РµСЃС‚СЊ, 0 вЂ” РЅРµС‚);</span>
+<span class="pc" id="L64">    val canLike: Boolean = false, // РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РїРѕСЃС‚Р°РІРёС‚СЊ РѕС‚РјРµС‚РєСѓ В«РњРЅРµ РЅСЂР°РІРёС‚СЃСЏВ» (1 вЂ” РјРѕР¶РµС‚, 0 вЂ” РЅРµ РјРѕР¶РµС‚);</span>
+<span class="pc" id="L65">    val canPublish:Boolean = true,// вЂ” РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃРґРµР»Р°С‚СЊ СЂРµРїРѕСЃС‚ Р·Р°РїРёСЃРё (1 вЂ” РјРѕР¶РµС‚, 0 вЂ” РЅРµ РјРѕР¶РµС‚).</span>
+<span class="fc" id="L66">)</span>
+<span class="fc" id="L67">data class CommentsPost(</span>
+<span class="pc" id="L68">    val count: Int? = null, // РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјРј 7.РјРѕР¶РµС‚ Р»Рё РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ</span>
+<span class="pc" id="L69">    val can_close: Boolean = true, //РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°РєСЂС‹С‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёРё Рє Р·Р°РїРёСЃРё*</span>
+<span class="pc" id="L70">    val can_post: Boolean = true,  // РјРѕР¶РµС‚ Р»Рё РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ</span>
+<span class="pc" id="L71">    val can_open: Boolean = true, //РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РѕС‚РєСЂС‹С‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёРё Рє Р·Р°РїРёСЃРё.</span>
+<span class="pc" id="L72">    val groupsCanPost: Boolean = true, //РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕРіСѓС‚ Р»Рё СЃРѕРѕР±С‰РµСЃС‚РІР° РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ;</span>
+<span class="fc" id="L73">)</span>
+<span class="fc" id="L74">data class Views23(</span>
+//Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ РїСЂРѕСЃРјРѕС‚СЂР°С… Р·Р°РїРёСЃРё. РћР±СЉРµРєС‚ СЃ РµРґРёРЅСЃС‚РІРµРЅРЅС‹Рј РїРѕР»РµРј:
+<span class="pc" id="L76">    val count12: Int? = null, //С‡РёСЃР»Рѕ РїСЂРѕСЃРјРѕС‚СЂРѕРІ Р·Р°РїРёСЃРё.</span>
+<span class="fc" id="L77">)</span>
+
+<span class="fc" id="L79">data class Reposts(</span>
+    //Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ СЂРµРїРѕСЃС‚Р°С… Р·Р°РїРёСЃРё (В«Р Р°СЃСЃРєР°Р·Р°С‚СЊ РґСЂСѓР·СЊСЏРјВ»), РѕР±СЉРµРєС‚ СЃ РїРѕР»СЏРјРё:
+<span class="pc" id="L81">    val count: Int? = null,// С‡РёСЃР»Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, СЃРєРѕРїРёСЂРѕРІР°РІС€РёС… Р·Р°РїРёСЃСЊ;</span>
+<span class="pc" id="L82">    val userReposted: Boolean = true,// вЂ” РЅР°Р»РёС‡РёРµ СЂРµРїРѕСЃС‚Р° РѕС‚ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</span>
+<span class="fc" id="L83">)</span>
+
+<span class="pc" id="L85">data class Comment(val id:Int, val text: String)</span>
+<span class="fc" id="L86">class PostNotFoundException : Exception()</span>
+
+object WallService {
+<span class="fc" id="L89">    private var posts = emptyArray&lt;Post&gt;()</span>
+<span class="fc" id="L90">    private var postId = 1</span>
+<span class="fc" id="L91">    private var commentId = 1</span>
+<span class="fc" id="L92">    private var comments = emptyArray&lt;Comment&gt;()</span>
+
+    fun createComment(postId: Int, comment: Comment): Comment {
+<span class="pc bfc" id="L95" title="All 2 branches covered.">        for (post in posts) {</span>
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">            if (post.id == postId) {</span>
+<span class="fc" id="L97">                comments += comment.copy(id = commentId++)</span>
+<span class="fc" id="L98">                return comments.last()</span>
+            }
+        }
+<span class="fc" id="L101">        throw PostNotFoundException()</span>
+    }
+
+    fun add(post: Post): Post {
+<span class="fc" id="L105">        posts += post.copy(id = postId++)</span>
+<span class="fc" id="L106">        return posts.last()</span>
     }
 
     fun update(postInput: Post): Boolean {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        for ((index, post) in posts.withIndex()) {</span>
-<span class="fc bfc" id="L37" title="All 2 branches covered.">            if (postInput.id == post.id) {</span>
-<span class="fc" id="L38">                posts[index] = postInput.copy()</span>
-<span class="fc" id="L39">                return true</span>
-            } // 3 С‚РµСЃС‚Р° СЃ Р°РЅРЅРѕС‚Р°С†РёРµР№ @Test Рё С„СѓРЅРєС†РёСЏ СЃ Р°РЅРЅРѕС‚Р°С†РёРµР№ @Before РєРѕС‚РѕСЂР°СЏ Р±СѓРґРµС‚ РѕС‡РёС‰Р°С‚СЊ СЃРёРЅРіР»С‚РѕРЅ РїРµСЂРµРґ РєР°Р¶РґС‹Рј С‚РµСЃС‚РѕРј. РҐРѕСЂРѕС€Рѕ, С‡С‚РѕР±С‹ РЅРµ С‚СЂР°С‚РёС‚СЊ РІР°С€Рµ РІСЂРµРјСЏ, СЏ РїСЂРёСЃС‚СѓРїР»СЋ, Р•СЃР»Рё С‡С‚Рѕ СЏ РІ С‚РµРєСЃС‚РѕРІРѕРј РІРёРґРµ Рє РІР°Рј РѕР±СЂР°С‰СѓСЃСЊ РѕРє
-        }
-<span class="fc" id="L42">        return false</span>
-    }
-
-    fun clear() {
-<span class="fc" id="L46">        posts = emptyArray()</span>
-<span class="fc" id="L47">        postId = 1</span>
-<span class="fc" id="L48">    }</span>
-
-    fun likeById(id: Int) { //С‚Р°Рј Р¶Рµ update С‚СЂРµР±СѓРµС‚СЃСЏ
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        for ((index,post) in posts.withIndex()) {</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (post.id == id) {</span>
-<span class="nc" id="L53">                posts[index] = post.copy(Likes = post.Likes + 1)</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        for ((index, post) in posts.withIndex()) {</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">            if (postInput.id == post.id) {</span>
+<span class="fc" id="L112">                posts[index] = postInput.copy()</span>
+<span class="fc" id="L113">                return true</span>
             }
         }
-<span class="nc" id="L56">    }</span>
+<span class="fc" id="L116">        return false</span>
+    }
 
+
+    fun clear() {
+<span class="fc" id="L121">        posts = emptyArray()</span>
+<span class="fc" id="L122">        postId = 1</span>
+<span class="fc" id="L123">        comments = emptyArray()</span>
+<span class="fc" id="L124">        commentId = 1</span>
+<span class="fc" id="L125">    }</span>
+
+
+    fun likeById(id: Int) { //С‚Р°Рј Р¶Рµ update С‚СЂРµР±СѓРµС‚СЃСЏ
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        for ((index, post) in posts.withIndex()) {</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (post.id == id) {</span>
+<span class="nc" id="L131">                posts[index] = post.copy(Likes = post.Likes + 1)</span>
+            }
+        }
+<span class="nc" id="L134">    }</span>
 
 }
 
-//fun add(post: Post): Post {
-    //TODO()
-//}
-fun main() {
-<span class="nc" id="L65">    val post = Post(10, &quot;Murat&quot;, &quot;post&quot;, 23, 10, CommentsPost(), Likes = 0, true, true, friendsOnly = false)</span>
-<span class="nc" id="L66">    println(post)</span>
-<span class="nc" id="L67">    val (id, from, text) = post</span>
-<span class="nc" id="L68">    val Liked = post.copy(Likes = post.Likes + 1)</span>
+<span class="nc" id="L138">abstract sealed class Attachment(val type: String)</span>
 
-<span class="nc" id="L70">}</span>
+
+
+
+
+// val type: Photo,
+//val type2: Video,
+//val type3: Link,
+//val type4: Doc,
+//val type5: Audio
+
+
+
+
+<span class="nc" id="L153">class AudioAttachment(val audio: Audio) : Attachment(&quot;Audio&quot;)</span>
+
+<span class="nc" id="L155">class VideoAttachment(val video: Video) : Attachment(&quot;Video&quot;)</span>
+
+<span class="nc" id="L157">class PhotoAttachment(</span>
+<span class="nc" id="L158">    val photo: Photo</span>
+<span class="nc" id="L159">): Attachment(&quot;Photo&quot;)</span>
+<span class="nc" id="L160">class DocAttachment(val doc: Doc</span>
+<span class="nc" id="L161">): Attachment(&quot;Doc&quot;)</span>
+<span class="nc" id="L162">class LinkAttachment(val link: Link): Attachment(&quot;Link&quot;)</span>
+
+<span class="nc" id="L164">data class Doc (</span>
+<span class="nc" id="L165">    val id: Int? = null,//	Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РґРѕРєСѓРјРµРЅС‚Р°.</span>
+<span class="nc" id="L166">    val ownerId: Int? = null, //Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ, Р·Р°РіСЂСѓР·РёРІС€РµРіРѕ РґРѕРєСѓРјРµРЅС‚.</span>
+<span class="nc" id="L167">    val title: String? = null,//РќР°Р·РІР°РЅРёРµ РґРѕРєСѓРјРµРЅС‚Р°.</span>
+<span class="nc" id="L168">    val size: Int?= null,// Р Р°Р·РјРµСЂ РґРѕРєСѓРјРµРЅС‚Р° РІ Р±Р°Р№С‚Р°С….</span>
+<span class="nc" id="L169">    val ext: String? = null,//СЂР°СЃС€РёСЂРµРЅРёРµ РґРѕРєСѓРјРµРЅС‚Р°.</span>
+<span class="nc" id="L170">    val url: String? = null//РђРґСЂРµСЃ РґРѕРєСѓРјРµРЅС‚Р°, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ РµРіРѕ РјРѕР¶РЅРѕ Р·Р°РіСЂСѓР·РёС‚СЊ.</span>
+
+
+<span class="nc" id="L173">)</span>
+<span class="nc" id="L174">data class Audio (</span>
+<span class="nc" id="L175">    val id: Int? = null, //Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р°СѓРґРёРѕР·Р°РїРёСЃРё.</span>
+<span class="nc" id="L176">    val ownerId: Int? = null,//	Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІР»Р°РґРµР»СЊС†Р° Р°СѓРґРёРѕР·Р°РїРёСЃРё.</span>
+<span class="nc" id="L177">    val artist: String? = null, //Р�СЃРїРѕР»РЅРёС‚РµР»СЊ.</span>
+<span class="nc" id="L178">    val title: String? = null,//РќР°Р·РІР°РЅРёРµ РєРѕРјРїРѕР·РёС†РёРё.</span>
+<span class="nc" id="L179">    val duration: Int? = null,//Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р°СѓРґРёРѕР·Р°РїРёСЃРё РІ СЃРµРєСѓРЅРґР°С….</span>
+<span class="nc" id="L180">    val url: String? = null,//РЎСЃС‹Р»РєР° РЅР° mp3.</span>
+
+<span class="nc" id="L182">)</span>
+<span class="nc" id="L183">data class Photo (</span>
+<span class="nc" id="L184">    val id: Int? = null, //Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С„РѕС‚РѕРіСЂР°С„РёРё.</span>
+<span class="nc" id="L185">    val albumId: Int? = null,//Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р°Р»СЊР±РѕРјР°, РІ РєРѕС‚РѕСЂРѕРј РЅР°С…РѕРґРёС‚СЃСЏ С„РѕС‚РѕРіСЂР°С„РёСЏ.</span>
+<span class="nc" id="L186">    val ownerId: Int? = null,//	Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІР»Р°РґРµР»СЊС†Р° С„РѕС‚РѕРіСЂР°С„РёРё.</span>
+<span class="nc" id="L187">    val userId: Int? = null,// Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ, Р·Р°РіСЂСѓР·РёРІС€РµРіРѕ С„РѕС‚Рѕ (РµСЃР»Рё С„РѕС‚РѕРіСЂР°С„РёСЏ СЂР°Р·РјРµС‰РµРЅР° РІ СЃРѕРѕР±С‰РµСЃС‚РІРµ). Р”Р»СЏ С„РѕС‚РѕРіСЂР°С„РёР№, СЂР°Р·РјРµС‰РµРЅРЅС‹С… РѕС‚ РёРјРµРЅРё СЃРѕРѕР±С‰РµСЃС‚РІР°, user_id = 100.</span>
+<span class="nc" id="L188">    val text: String? = null,//РўРµРєСЃС‚ РѕРїРёСЃР°РЅРёСЏ С„РѕС‚РѕРіСЂР°С„РёРё</span>
+<span class="nc" id="L189">    val date: Int? = null,//	Р”Р°С‚Р° РґРѕР±Р°РІР»РµРЅРёСЏ РІ С„РѕСЂРјР°С‚Рµ Unixtime.</span>
+<span class="nc" id="L190">)</span>
+
+<span class="nc" id="L192">data class Video (</span>
+<span class="nc" id="L193">    val id: Int? = null,//Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІРёРґРµРѕР·Р°РїРёСЃРё.</span>
+<span class="nc" id="L194">    val ownerId: Int? = null, //Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІР»Р°РґРµР»СЊС†Р° РІРёРґРµРѕР·Р°РїРёСЃРё.</span>
+<span class="nc" id="L195">    val title: String? = null,//РќР°Р·РІР°РЅРёРµ РІРёРґРµРѕР·Р°РїРёСЃРё.</span>
+<span class="nc" id="L196">    val description: String? = null,//РўРµРєСЃС‚ РѕРїРёСЃР°РЅРёСЏ РІРёРґРµРѕР·Р°РїРёСЃРё.</span>
+<span class="nc" id="L197">    val duration: Int? = null,//Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ СЂРѕР»РёРєР° РІ СЃРµРєСѓРЅРґР°С….</span>
+
+<span class="nc" id="L199">)</span>
+<span class="nc" id="L200">data class Link (</span>
+<span class="nc" id="L201">    val url: String? = null, //URL СЃСЃС‹Р»РєРё.</span>
+<span class="nc" id="L202">    val title: String? = null, //Р—Р°РіРѕР»РѕРІРѕРє СЃСЃС‹Р»РєРё.</span>
+<span class="nc" id="L203">    val caption: String? = null,//РџРѕРґРїРёСЃСЊ СЃСЃС‹Р»РєРё (РµСЃР»Рё РёРјРµРµС‚СЃСЏ).</span>
+<span class="nc" id="L204">    val description: String? = null,//	РћРїРёСЃР°РЅРёРµ СЃСЃС‹Р»РєРё.</span>
+
+<span class="nc" id="L206">)</span>
+fun main() {
+<span class="nc" id="L208">    val post = Post(    1, 2,5, 5, &quot;sdada&quot;, &quot;Vehsas&quot;, 23, CommentsPost(), 23, true, false, true, 55, &quot;rfr ltkf&quot; , 54, false, true, false, null,444, Donut(), Geo(), copyrRight(), likes(),Views23(), Reposts() )</span>
+
+
+
+<span class="nc" id="L212">    println(post)</span>
+
+<span class="nc" id="L214">}</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
